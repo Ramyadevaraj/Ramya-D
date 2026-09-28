@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenie - AI Learning Assistant</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🎓 EduGenie</h1>
+        <p>Google Gemini Powered Learning Assistant</p>
+    </div>
+
+    <div class="card">
+
+        <form action="/process" method="POST">
+
+            <label>Select Task</label>
+
+            <select name="task" required>
+
+                <option value="">Choose Task</option>
+
+                <option value="qa">Question & Answer</option>
+
+                <option value="explain">Explain Concept</option>
+
+                <option value="summarize">Summarize Text</option>
+
+                <option value="quiz">Generate Quiz</option>
+
+                <option value="learn">Learning Path</option>
+
+            </select>
+
+            <label>Enter Topic / Question / Text</label>
+
+            <textarea
+                name="user_input"
+                rows="10"
+                placeholder="Type your topic, question, or content here..."
+                required>
+            </textarea>
+
+            <button type="submit">
+                Generate
+            </button>
+
+        </form>
+
+    </div>
+
+    {% if result %}
+
+    <div class="result-card">
+
+        <h2>Result</h2>
+
+        {% if result is string %}
+
+        <pre>{{ result }}</pre>
+
+        {% else %}
+
+        <pre>{{ result | tojson(indent=2) }}</pre>
+
+        {% endif %}
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
